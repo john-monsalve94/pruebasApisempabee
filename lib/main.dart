@@ -1,3 +1,4 @@
+import 'package:empabee/presentation/screens/home/home_screen.dart';
 import 'package:empabee/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -13,13 +14,6 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: AppTheme(selectedColor: 0).getTheme(),
-        home: Scaffold(
-          body: Center(
-            child: FilledButton(
-              child: const Text('hola color'),
-              onPressed: () {},
-            ),
-          ),
-        ));
+        home: const HomeScreen());
   }
 }
