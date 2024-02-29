@@ -1,7 +1,5 @@
 
-import 'package:empabee/presentation/screens/colmenas/colmenas_screen.dart';
-import 'package:empabee/presentation/screens/graficas/graficas_screens.dart';
-import 'package:empabee/presentation/screens/home/home_screen.dart';
+import 'package:empabee/config/router/app_router.dart';
 import 'package:empabee/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
@@ -14,14 +12,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
         debugShowCheckedModeBanner: false,
         theme: AppTheme(selectedColor: 2).getTheme(),
-        home: const HomeScreen(),
-        routes: {
-        
-          '/colmenas': (context) => ColmenasScreen(),
-          '/graficas': (context) => GraficasScreen(),
-        });
+
+        );
   }
 }

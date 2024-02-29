@@ -1,10 +1,8 @@
-import 'dart:ui';
-
-import 'package:empabee/menu/menu_items.dart';
-import 'package:empabee/presentation/screens/colmenas/colmenas_screen.dart';
+import 'package:empabee/config/menu/menu_items.dart';
 import 'package:empabee/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:go_router/go_router.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -60,7 +58,8 @@ class _CustomListTitle extends StatelessWidget {
       onTap: () {
         // Navigator.of(context)
         //     .push(MaterialPageRoute(builder: (context) => ColmenasScreen()));
-        Navigator.pushNamed(context, menuItem.link);
+        // Navigator.pushNamed(context, menuItem.link);
+        context.push(menuItem.link);
       },
     );
   }
