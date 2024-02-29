@@ -21,7 +21,7 @@ MenuItems(
     icon: Icons.smart_button_outlined
     ),
 MenuItems(
-    title: 'graficas',
+    title: 'Graficas',
     subtitle: 'graficas generales',
     link: '/graficas',
     icon: Icons.hive_outlined

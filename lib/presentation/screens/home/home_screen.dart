@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:empabee/menu/menu_items.dart';
+import 'package:empabee/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -24,13 +28,38 @@ class _HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+        physics: BouncingScrollPhysics(),
         itemCount: appMenuItems.length,
         itemBuilder: (context, index) {
           final menuItem = appMenuItems[index];
-          return ListTile(
-            title: Text(menuItem.title),
-            subtitle: Text(menuItem.subtitle),
-          );
+          final color =  colorList[(selectedColor: 1).selectedColor];
+          return _CustomListTitle(menuItem: menuItem, color: color);
         });
+  }
+}
+
+class _CustomListTitle extends StatelessWidget {
+  const _CustomListTitle({
+    // super.key,
+    required this.menuItem,
+    required this.color,
+  });
+
+  final MenuItems menuItem;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return ListTile(
+      leading:
+          Icon(menuItem.icon, color: color),  //Color.fromARGB(255, 247, 167, 51)
+          trailing: Icon(Icons.arrow_forward_ios_rounded,color: color),
+      title: Text(menuItem.title),
+      subtitle: Text(menuItem.subtitle),
+      onTap: (){
+        
+      },
+    );
   }
 }
