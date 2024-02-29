@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:empabee/menu/menu_items.dart';
+import 'package:empabee/presentation/screens/colmenas/colmenas_screen.dart';
 import 'package:empabee/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -32,7 +33,7 @@ class _HomeView extends StatelessWidget {
         itemCount: appMenuItems.length,
         itemBuilder: (context, index) {
           final menuItem = appMenuItems[index];
-          final color =  colorList[(selectedColor: 1).selectedColor];
+          final color = colorList[(selectedColor: 1).selectedColor];
           return _CustomListTitle(menuItem: menuItem, color: color);
         });
   }
@@ -50,15 +51,16 @@ class _CustomListTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return ListTile(
       leading:
-          Icon(menuItem.icon, color: color),  //Color.fromARGB(255, 247, 167, 51)
-          trailing: Icon(Icons.arrow_forward_ios_rounded,color: color),
+          Icon(menuItem.icon, color: color), //Color.fromARGB(255, 247, 167, 51)
+      trailing: Icon(Icons.arrow_forward_ios_rounded, color: color),
       title: Text(menuItem.title),
       subtitle: Text(menuItem.subtitle),
-      onTap: (){
-        
+      onTap: () {
+        // Navigator.of(context)
+        //     .push(MaterialPageRoute(builder: (context) => ColmenasScreen()));
+        Navigator.pushNamed(context, menuItem.link);
       },
     );
   }
