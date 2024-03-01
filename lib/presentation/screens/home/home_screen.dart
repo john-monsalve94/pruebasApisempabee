@@ -31,7 +31,7 @@ class _HomeView extends StatelessWidget {
         itemCount: appMenuItems.length,
         itemBuilder: (context, index) {
           final menuItem = appMenuItems[index];
-          final color = colorList[(selectedColor: 1).selectedColor];
+          final color = colorList[(selectedColor: 0).selectedColor];
           return _CustomListTitle(menuItem: menuItem, color: color);
         });
   }
