@@ -37,15 +37,15 @@ class _ColmenasView extends StatelessWidget {
           spacing: 10,
           alignment: WrapAlignment.center,
           children: [
-            ElevatedButton(
-                onPressed: () {}, child: const Text('boton elevado')),
-            ElevatedButton(
-                onPressed: null, child: const Text('boton desabilitado')),
-            ElevatedButton.icon(
-                onPressed: () {},
-                icon: Icon(Icons.ac_unit_outlined),
-                label: Text('boton con icono')),
-            CustomButton(),
+          //   ElevatedButton(
+          //       onPressed: () {}, child: const Text('boton elevado')),
+          //   ElevatedButton(
+          //       onPressed: null, child: const Text('boton desabilitado')),
+          //   ElevatedButton.icon(
+          //       onPressed: () {},
+          //       icon: Icon(Icons.ac_unit_outlined),
+          //       label: Text('boton con icono')),
+            // CustomButton(),
           ],
         ),
       ),

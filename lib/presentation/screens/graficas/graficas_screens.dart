@@ -9,7 +9,16 @@ class GraficasScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Graficas'),
       ),
-      body: Placeholder(),
+      body: _CardsView(),
     );
+  }
+}
+
+class _CardsView extends StatelessWidget {
+  const _CardsView();
+
+  @override
+  Widget build(BuildContext context) {
+    return Placeholder();
   }
 }

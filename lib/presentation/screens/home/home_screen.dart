@@ -3,7 +3,6 @@ import 'package:empabee/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -11,7 +10,26 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('colmenas y graficas'),
+        
+        title: const Text('Bienvenido a EmpaBee'), centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+            icon: const Icon(
+              Icons.notifications,
+            ),
+            tooltip: 'Notificaciones',color: Color.fromARGB(255, 235, 184, 32),
+            onPressed: () {},
+          ),
+                    IconButton(
+            icon: const Icon(
+              Icons.account_circle_outlined,color: Color.fromARGB(255, 235, 184, 32),
+            ),
+            tooltip: 'Perfil',
+            onPressed: () {},
+          )
+        
+        ],
+
         // centerTitle: true,
       ),
       body: const _HomeView(),
