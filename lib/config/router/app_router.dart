@@ -5,15 +5,22 @@ import 'package:go_router/go_router.dart';
 
 // GoRouter configuration
 final appRouter = GoRouter(
-  routes: [
+  // initialLocation: '/',
+  routes: [   
     GoRoute(
-      path: '/',
-      builder: (context, state) => const HomeScreen(),
+      path:'/',
+      builder:(context, state) => const SplashScreen(),
+      ),
+    GoRoute(
+      path: '/login',
+      builder: (context, state) =>  LoginScreens(),
+      ),
+  
       
-    ),
+    
         GoRoute(
       path: '/colmenas',
-      builder: (context, state) => const ColmenasScreen(),
+      builder: (context, state) =>  ColmenasScreen(),
       
     ),
         GoRoute(
@@ -21,5 +28,6 @@ final appRouter = GoRouter(
       builder: (context, state) => const GraficasScreen(),
       
     ),
+
   ],
 );
