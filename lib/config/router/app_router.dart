@@ -9,11 +9,11 @@ final appRouter = GoRouter(
   routes: [   
     GoRoute(
       path:'/',
-      builder:(context, state) => const SplashScreen(),
+      builder:(context, state) =>  SplashScreen(),
       ),
     GoRoute(
       path: '/login',
-      builder: (context, state) =>  LoginScreens(),
+      builder: (context, state) =>  LoginScreen(),
       ),
   
       
