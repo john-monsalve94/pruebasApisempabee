@@ -1,5 +1,5 @@
 
-import 'package:empabee/presentation/screens/screens.dart';
+import 'package:empabee/vistas/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
 

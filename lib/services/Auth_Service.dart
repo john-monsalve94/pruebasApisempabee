@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:empabee/presentation/screens/screens.dart';
+import 'package:empabee/vistas/screens/screens.dart';
 import 'package:empabee/services/token_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

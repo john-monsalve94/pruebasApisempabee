@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:empabee/models/colmenas_models.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class CardsColmenas extends StatelessWidget {
   final ColmenasModels card;
@@ -12,6 +11,15 @@ class CardsColmenas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // switch (card.estado) {
+    //   case 'Info':
+    //     Color color = Colors.green;
+    //     break;
+    //   case 'Info':
+    //     Color color = Colors.green;
+    //     break;
+    //   default:
+    // }
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(

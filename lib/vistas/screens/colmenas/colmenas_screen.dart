@@ -5,7 +5,7 @@ import 'package:empabee/widgets/cards_colmenas.dart';
 import 'package:empabee/widgets/navFooterEmpabee.dart';
 
 import 'package:flutter/material.dart';
-import 'package:empabee/presentation/screens/screens.dart';
+import 'package:empabee/vistas/screens/screens.dart';
 
 class ColmenasScreen extends StatefulWidget {
   @override
