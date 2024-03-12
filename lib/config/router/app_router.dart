@@ -1,4 +1,5 @@
 
+import 'package:empabee/vistas/screens/perfil/perfil.dart';
 import 'package:empabee/vistas/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
@@ -26,6 +27,11 @@ final appRouter = GoRouter(
         GoRoute(
       path: '/graficas',
       builder: (context, state) => const GraficasScreen(),
+      
+    ),
+            GoRoute(
+      path: '/perfil',
+      builder: (context, state) => const perfilScreen(),
       
     ),
 
