@@ -1,3 +1,4 @@
+import 'package:empabee/widgets/cajonEmpa.dart';
 import 'package:flutter/material.dart';
 
 class perfilScreen extends StatelessWidget {
@@ -6,9 +7,9 @@ class perfilScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('perfil'),
-      ),
+      // appBar: AppBar(
+      //   title: Text('perfil'),
+      // ),
       body: _CardsView(),
     );
   }
@@ -19,6 +20,6 @@ class _CardsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return DrawerPage(title: 'Perfil john');
   }
 }

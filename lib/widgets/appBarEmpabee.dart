@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:empabee/vistas/screens/perfil/perfil.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,9 +18,7 @@ class AppBarEmpabee extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 16),
           child: IconButton(
-            onPressed: () {
-              GoRouter.of(context).go('/perfil');
-            },
+            onPressed: () => context.go('/colmenas/perfil'),
             icon: Icon(
               Icons.account_circle,
               size: 40,

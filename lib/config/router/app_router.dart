@@ -16,12 +16,18 @@ final appRouter = GoRouter(
       path: '/login',
       builder: (context, state) =>  LoginScreen(),
       ),
-  
-      
-    
+
         GoRoute(
       path: '/colmenas',
       builder: (context, state) =>  ColmenasScreen(),
+      routes: [
+        GoRoute(
+      path: 'perfil',
+      builder: (context, state) => const perfilScreen(),
+      
+    ),
+
+      ]
       
     ),
         GoRoute(
@@ -29,11 +35,7 @@ final appRouter = GoRouter(
       builder: (context, state) => const GraficasScreen(),
       
     ),
-            GoRoute(
-      path: '/perfil',
-      builder: (context, state) => const perfilScreen(),
-      
-    ),
+            
 
   ],
 );
