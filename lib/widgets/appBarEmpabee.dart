@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
 import 'package:empabee/vistas/screens/perfil/perfil.dart';
+import 'package:empabee/widgets/drawerNav.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -12,7 +13,8 @@ class AppBarEmpabee extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+
+      backgroundColor: Color(0xFFFBD78C),
       title: Text(pageTitle),
       actions: [
         Padding(
@@ -22,7 +24,7 @@ class AppBarEmpabee extends StatelessWidget implements PreferredSizeWidget {
             icon: Icon(
               Icons.account_circle,
               size: 40,
-              color: Colors.white,
+              color: Color.fromARGB(255, 189, 149, 39),
             ),
           ),
         )

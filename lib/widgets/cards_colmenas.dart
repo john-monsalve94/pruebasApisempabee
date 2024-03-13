@@ -56,9 +56,12 @@ class CardsColmenas extends StatelessWidget {
                     size: 40,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(card.nombre),
-                SizedBox(height: 10),
+
+                Padding(
+                  padding: const EdgeInsets.only(top: 16,bottom: 16),
+                  child: Text(card.nombre),
+                ),
+
                 Text('Último valor importante'),
               ],
             ),

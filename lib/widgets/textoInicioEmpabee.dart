@@ -9,7 +9,7 @@ class InicioEmpabee extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding:  EdgeInsets.only(left: 8),
       child: SizedBox(
         width: double.infinity,
         height: 76,
@@ -18,17 +18,20 @@ class InicioEmpabee extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Inicio de sesion',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 28,
-                fontFamily: 'Inter',
-                fontWeight: FontWeight.w700,
-                height: 0,
+            Padding(
+              padding:  EdgeInsets.only(bottom: 16),
+              child: Text(
+                'Inicio de sesion',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 28,
+                  fontFamily: 'Inter',
+                  fontWeight: FontWeight.w700,
+                  height: 0,
+                ),
               ),
             ),
-            const SizedBox(height: 16),
+            
             Text.rich(
               TextSpan(
                 children: [

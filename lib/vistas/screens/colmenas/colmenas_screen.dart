@@ -1,11 +1,15 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 
-import 'package:empabee/widgets/appBarEmpabee.dart';
+import 'package:empabee/vistas/screens/perfil/perfil.dart';
+import 'package:empabee/widgets/appBarEmpa.dart';
+
 import 'package:empabee/widgets/cards_colmenas.dart';
+import 'package:empabee/widgets/drawerNav.dart';
 import 'package:empabee/widgets/navFooterEmpabee.dart';
 
 import 'package:flutter/material.dart';
 import 'package:empabee/vistas/screens/screens.dart';
+import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 
 class ColmenasScreen extends StatefulWidget {
   @override
@@ -13,14 +17,12 @@ class ColmenasScreen extends StatefulWidget {
 }
 
 class _ColmenasScreenState extends State<ColmenasScreen> {
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      extendBodyBehindAppBar: true,
-      appBar: AppBarEmpabee(
-        pageTitle: 'Bienvenido a Empabee',
-      ),
+      appBar: AppBarEmpa(),
+      endDrawer: DrawerNav(),
       body: FutureBuilder<List<ColmenasModels>>(
         future: ColmenasService().getColmenas(),
         initialData: const [],
@@ -45,7 +47,7 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 300,
+                    height: 250,
                     child: Stack(
                       children: [
                         Container(
@@ -65,22 +67,25 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                         ),
                         Column(
                           children: [
-                            SizedBox(
-                              height: 100,
-                            ),
-                            Row(children: [
-                              Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.all(16.16),
-                                  child: Text(
-                                    'Hola John Monsalve',
-                                    style: TextStyle(
-                                        fontSize: 24,
-                                        fontWeight: FontWeight.bold),
+                            // SizedBox(
+                            //   height: 100,
+                            // ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 48),
+                              child: Row(children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(16.16),
+                                    child: Text(
+                                      'Hola John Monsalve',
+                                      style: TextStyle(
+                                          fontSize: 24,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ]),
+                              ]),
+                            ),
                             Row(children: [
                               Expanded(
                                 child: Padding(
@@ -96,13 +101,13 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                             ]),
                           ],
                         ),
-                        
                       ],
                     ),
                   ),
-                  SizedBox(height: 16,),
+                  SizedBox(
+                    height: 16,
+                  ),
                   Expanded(
-                    
                     // es necesario para que se distribullan los elemento en la columna con esto le damos un tamaño definido
 
                     child: Padding(
@@ -114,7 +119,7 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                         //el list...builder ya tiene SingleChildScrollView
 
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 1.1),
+                            crossAxisCount: 2, childAspectRatio: 0.8),
 
                         itemCount: colmenas.length,
                         itemBuilder: (context, index) {
@@ -125,16 +130,16 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                       ),
                     ),
                   ),
-                
                 ],
               ),
             );
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
-        
-      },child: Icon(Icons.add),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
       bottomNavigationBar: NavFooter(),
     );
   }

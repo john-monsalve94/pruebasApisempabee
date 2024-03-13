@@ -1,7 +1,9 @@
 import 'package:empabee/services/Auth_Service.dart';
 import 'package:empabee/services/token_service.dart';
 import 'package:empabee/widgets/textoInicioEmpabee.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -88,19 +90,24 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(24),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  // height: 350,
-                  // width: 350,
-                  child: Image.asset('assets/images/loginPortadaLogo.png')),
-              InicioEmpabee(),
-              SizedBox(
-                height: 16,
-              ),
-              Row(
+        child: Column(
+          
+          children: [
+            SizedBox(
+                height: 250,
+                width: 250,
+                child: Image.asset('assets/images/loginPortadaLogo.png')
+                ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: InicioEmpabee(),
+            ),
+            // SizedBox(
+            //   height: 16,
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16,left: 8),
+              child: const Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
@@ -115,10 +122,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ],
               ),
-              SizedBox(
-                height: 16,
-              ),
-              TextField(
+            ),
+            // SizedBox(
+            //   height: 16,
+            // ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 16,left: 8),
+              child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
@@ -126,13 +136,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     prefixIcon: Icon(Icons.email, color: Color(0xFFF7A733))),
                 controller: _emailController,
               ),
-              SizedBox(
-                height: 16,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
+            ),
+            // SizedBox(
+            //   height: 16,
+            // ),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding:  EdgeInsets.only(bottom: 16,left: 8),
+                  child: Text(
                     'Contraseña',
                     style: TextStyle(
                       color: Colors.black,
@@ -142,12 +155,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 0,
                     ),
                   ),
-                ],
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              TextField(
+                ),
+              ],
+            ),
+            // SizedBox(
+            //   height: 16,
+            // ),
+            Padding(
+              padding:  EdgeInsets.only(bottom: 40,left: 8),
+              child: TextField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)),
@@ -156,22 +172,22 @@ class _LoginScreenState extends State<LoginScreen> {
                 controller: _passwordController,
                 obscureText: true,
               ),
-              SizedBox(
-                height: 80,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    onPressed: _isLoading ? null : _login,
-                    child: _isLoading
-                        ? CircularProgressIndicator()
-                        : Text('Iniciar sesión'),
-                  ),
-                ],
-              ),
-            ],
-          ),
+            ),
+            // SizedBox(
+            //   height: 40,
+            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                ElevatedButton(
+                  onPressed: _isLoading ? null : _login,
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : Text('Iniciar sesión'),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

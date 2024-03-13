@@ -17,6 +17,7 @@ dependencies:
   provider: ^6.1.2
   logger: ^2.1.0
   jwt_decoder: ^2.0.1
+  hidden_drawer_menu: ^3.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
