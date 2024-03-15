@@ -2,10 +2,11 @@
 
 import 'dart:async';
 
+import 'package:empabee/services/Auth_Service.dart';
+import 'package:empabee/services/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
-
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -25,7 +26,7 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   void navigationPage() {
-    GoRouter.of(context).go('/login');
+    AuthService.obtenerToken(context);
   }
 
   @override
@@ -64,14 +65,6 @@ class SplashScreenState extends State<SplashScreen>
                 height: animation.value * 450,
               ),
               SizedBox(height: 45),
-              // Text(
-              //   'EmpaBee',
-              //   style: TextStyle(
-              //     color: Color(0xFFFBD78C),
-              //     fontWeight: FontWeight.bold,
-              //   ),
-              // ),
-
             ],
           ),
         ],

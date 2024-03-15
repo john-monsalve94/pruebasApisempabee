@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -18,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   AuthService authService = AuthService();
   bool _isLoading = false;
-  TokenService tokenService = TokenService();
+
 
   Future<void> _login() async {
     // Cuando el usuario toca el botón de inicio de sesión, la aplicación comienza a verificar si el correo electrónico y la contraseña son correctos.
@@ -36,12 +38,12 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (response['access_token'] != null) {
         final token = response['access_token'];
-        await tokenService.saveToken(token);
-        final savedToken = await tokenService.getToken();
+        await TokenService.saveToken(token);
+        final savedToken = await TokenService.getToken();
 
-        // Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-        // print('olaaaaaaaaaaaa');
-        // print(decodedToken);
+        Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+        print('olaaaaaaaaaaaa');
+        print(decodedToken);
 
         // final userId = decodedToken['user_id'];
         // final username = decodedToken['username'];

@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 
-import 'package:empabee/vistas/screens/perfil/perfil.dart';
+import 'package:empabee/vistas/screens/perfil/perfilScreen.dart';
 import 'package:empabee/widgets/appBarEmpa.dart';
 
 import 'package:empabee/widgets/cards_colmenas.dart';
@@ -9,7 +9,6 @@ import 'package:empabee/widgets/navFooterEmpabee.dart';
 
 import 'package:flutter/material.dart';
 import 'package:empabee/vistas/screens/screens.dart';
-import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 
 class ColmenasScreen extends StatefulWidget {
   @override
@@ -17,13 +16,12 @@ class ColmenasScreen extends StatefulWidget {
 }
 
 class _ColmenasScreenState extends State<ColmenasScreen> {
- 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarEmpa(),
       endDrawer: DrawerNav(),
-      body: FutureBuilder<List<ColmenasModels>>(
+      body: FutureBuilder<List<Datum>>(
         future: ColmenasService().getColmenas(),
         initialData: const [],
         builder: (context, snapshot) {
@@ -39,7 +37,8 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
             );
           } else {
             //----------------------------ahora despues de comprobar el future viene el crear la vista
-            final List<ColmenasModels> colmenas = snapshot.data!;
+            final List<Datum> colmenas = snapshot.data!;
+            // final List<Datum> data = colmenas.data ?? [];
             // el snapshot es para obtener los datos del Future o stream el ! afirmando que no son nulos
 
             return Center(
@@ -124,8 +123,8 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                         itemCount: colmenas.length,
                         itemBuilder: (context, index) {
                           // print({'ENTRANDO HASTA AQUI':colmenas});
-                          return CardsColmenas(colmenas[
-                              index]); // title: Text(colmenas[index].nombre),
+                          return CardsColmenas(colmenas[index]);
+                          // title: Text(colmenas[index].nombre),
                         },
                       ),
                     ),

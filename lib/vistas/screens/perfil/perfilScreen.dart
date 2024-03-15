@@ -1,15 +1,15 @@
 import 'package:empabee/widgets/drawerNav.dart';
 import 'package:flutter/material.dart';
 
-class perfilScreen extends StatelessWidget {
-  const perfilScreen({super.key});
+class PerfilScreen extends StatelessWidget {
+  const PerfilScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Text('perfil'),
-      // ),
+      appBar: AppBar(
+        title: Text('perfil'),
+      ),
       body: _CardsView(),
     );
   }

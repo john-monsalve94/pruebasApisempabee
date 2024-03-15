@@ -5,7 +5,8 @@ import 'package:empabee/models/colmenas_models.dart';
 import 'package:flutter/material.dart';
 
 class CardsColmenas extends StatelessWidget {
-  final ColmenasModels card;
+  final Datum card;
+ 
 
   const CardsColmenas(this.card, {Key? key}) : super(key: key);
 
@@ -56,12 +57,11 @@ class CardsColmenas extends StatelessWidget {
                     size: 40,
                   ),
                 ),
-
                 Padding(
-                  padding: const EdgeInsets.only(top: 16,bottom: 16),
-                  child: Text(card.nombre),
-                ),
+                  padding: const EdgeInsets.only(top: 16, bottom: 16),
 
+                  child: Text(card.nombre!),
+                ),
                 Text('Último valor importante'),
               ],
             ),
