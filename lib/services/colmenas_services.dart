@@ -9,25 +9,30 @@ class ColmenasService {
   final Dio _dio = Dio();
   final String baseUrl = apiUrl;
 
-  Future<List<Datum>> getColmenas() async {
+  Future<List<ColmenaModel>> getColmenas(int? limit, int? page) async {
     try {
       // Configurar los encabezados de la solicitud HTTP con el JWT
       //dio tiene a options el cual nos permite crear el header para mandarlo y consultar lo que queremos pero con el token
       // print('antes de entrar al header');
       // final token = _tokenService.getToken();
       // print(token);
-      Options options = Options(headers: {
-        'Authorization': 'Bearer ${await TokenService.getToken()}',
-        'Accept': 'application/json'
-      });
+      String url = '$baseUrl/v1/colmenas';
+      if (limit != null && page != null) {
+        url = '$url?limit=$limit&page=$page';
+      } else if (limit != null) {
+        url = '$url?limit=$limit';
+      } else if (page != null) {
+        url = '$url?page=$page';
+      }
+      Options options = await TokenService.getOptions();
       final Response response =
           // aqui el header esta guardado en options y se le pasa con la peticion para deje acceder al servidor
-          await _dio.get('$baseUrl/v1/colmenas', options: options);
+          await _dio.get(url, options: options);
       if (response.statusCode == 200) {
         final Map<String, dynamic> responseData = response.data;
         final List<dynamic> colmenasData = responseData["data"];
-        final List<Datum> colmenas =
-            colmenasData.map((json) => Datum.fromJson(json)).toList();
+        final List<ColmenaModel> colmenas =
+            colmenasData.map((json) => ColmenaModel.fromJson(json)).toList();
 
         // final List<dynamic> colmenasData = response.data;
         // final List<Datum> colmenas =
@@ -38,6 +43,18 @@ class ColmenasService {
       }
     } catch (e) {
       throw Exception('Error en la solicitud: $e');
+    }
+  }
+
+  Future<void> postData() async {
+    try {
+      final response =
+          await _dio.post('$baseUrl/v1/colmenas', data: PaginatorModel);
+
+      print(response);
+      return response.data;
+    } catch (e) {
+      throw Exception('No se puedo crear la colmena: $e');
     }
   }
 }

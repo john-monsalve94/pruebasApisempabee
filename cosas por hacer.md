@@ -22,3 +22,5 @@ perfil
 notificaciones
 
 en un menu desplegable
+
+para el paginator hay hacerlo en las tablas para mostrar los regustros en menu de colmenas solo scroll

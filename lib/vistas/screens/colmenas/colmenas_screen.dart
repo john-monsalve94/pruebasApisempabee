@@ -21,8 +21,9 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
     return Scaffold(
       appBar: AppBarEmpa(),
       endDrawer: DrawerNav(),
-      body: FutureBuilder<List<Datum>>(
-        future: ColmenasService().getColmenas(),
+      body: FutureBuilder<List<ColmenaModel>>(
+        future: ColmenasService().getColmenas(10,
+            1), // para manejar el nummero  de colmenas que voy a mostrar en la pagina
         initialData: const [],
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -37,7 +38,7 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
             );
           } else {
             //----------------------------ahora despues de comprobar el future viene el crear la vista
-            final List<Datum> colmenas = snapshot.data!;
+            final List<ColmenaModel> colmenas = snapshot.data!;
             // final List<Datum> data = colmenas.data ?? [];
             // el snapshot es para obtener los datos del Future o stream el ! afirmando que no son nulos
 

@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_router/go_router.dart';
@@ -46,12 +47,18 @@ class TokenService {
                   content: Text('Profavor vuelve a iniciar sessión'),
                   actions: [
                     TextButton(
-                        onPressed: () => 
-                        context.go('/login'),
+                        onPressed: () => context.go('/login'),
                         child: Text('Ok'))
                   ],
                 ));
       }
+    });
+  }
+
+  static Future<Options> getOptions() async {
+    return Options(headers: {
+      'Authorization': 'Bearer ${await TokenService.getToken()}',
+      'Accept': 'application/json'
     });
   }
 }

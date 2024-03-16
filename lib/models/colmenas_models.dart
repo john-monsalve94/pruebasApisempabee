@@ -185,24 +185,24 @@
 // }
 import 'dart:convert';
 
-class ColmenasModels {
-  final List<Datum> data;
+class PaginatorModel {
+  final List<dynamic> data;
   final int currentPage;
   final int totalPages;
 
-  ColmenasModels({
+  PaginatorModel({
     required this.data,
     required this.currentPage,
     required this.totalPages,
   });
 
-  factory ColmenasModels.fromRawJson(String str) =>
-      ColmenasModels.fromJson(json.decode(str));
+  factory PaginatorModel.fromRawJson(String str) =>
+      PaginatorModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory ColmenasModels.fromJson(Map<String, dynamic> json) => ColmenasModels(
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+  factory PaginatorModel.fromJson(Map<String, dynamic> json) => PaginatorModel(
+        data: List<ColmenaModel>.from(json["data"].map((x) => ColmenaModel.fromJson(x))),
         currentPage: json["current_page"],
         totalPages: json["total_pages"],
       );
@@ -214,7 +214,7 @@ class ColmenasModels {
       };
 }
 
-class Datum {
+class ColmenaModel {
   final int id;
   final String nombre;
   final DateTime fechaInicio;
@@ -231,7 +231,7 @@ class Datum {
   final dynamic deletedAt;
   final String estado;
 
-  Datum({
+  ColmenaModel({
     required this.id,
     required this.nombre,
     required this.fechaInicio,
@@ -249,11 +249,11 @@ class Datum {
     required this.estado,
   });
 
-  factory Datum.fromRawJson(String str) => Datum.fromJson(json.decode(str));
+  factory ColmenaModel.fromRawJson(String str) => ColmenaModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+  factory ColmenaModel.fromJson(Map<String, dynamic> json) => ColmenaModel(
         id: json["id"],
         nombre: json["nombre"],
         fechaInicio: DateTime.parse(json["fecha_inicio"]),
