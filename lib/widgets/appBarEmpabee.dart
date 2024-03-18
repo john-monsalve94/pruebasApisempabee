@@ -1,6 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
-import 'package:empabee/vistas/screens/perfil/perfilScreen.dart';
+import 'package:empabee/screens/perfil/perfilScreen.dart';
 import 'package:empabee/widgets/drawerNav.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

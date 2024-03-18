@@ -3,6 +3,7 @@
 import 'package:empabee/models/colmenas_models.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class CardsColmenas extends StatelessWidget {
   final ColmenaModel card;
@@ -50,10 +51,11 @@ class CardsColmenas extends StatelessWidget {
                 CircleAvatar(
                   radius: 25,
                   backgroundColor: Colors.orange,
-                  child: Icon(
-                    Icons.hive,
+                  child: SvgPicture.asset(
+                    'assets/images/colmena.svg', // Ruta al archivo SVG en tu proyecto
                     color: Colors.grey,
-                    size: 40,
+                    width: 40,
+                    height: 40,
                   ),
                 ),
                 Padding(

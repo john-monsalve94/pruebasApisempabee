@@ -11,6 +11,7 @@ class AppBarEmpa extends StatelessWidget implements PreferredSizeWidget {
         Builder(
           builder: (context) => IconButton(
             icon: Icon(Icons.account_circle),
+            iconSize: 30,
             onPressed: () {
               Scaffold.of(context).openEndDrawer();
             },

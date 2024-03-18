@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:empabee/services/token_service.dart';
 // import 'package:logger/logger.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:empabee/vistas/screens/screens.dart';
+import 'package:empabee/screens/screens.dart';
 
 class ColmenasService {
   final Dio _dio = Dio();
@@ -24,7 +24,8 @@ class ColmenasService {
       } else if (page != null) {
         url = '$url?page=$page';
       }
-      Options options = await TokenService.getOptions();
+      Options options = await TokenService
+          .getOptions(); // aqui esta el el bearer para que deje funcionar colmenas
       final Response response =
           // aqui el header esta guardado en options y se le pasa con la peticion para deje acceder al servidor
           await _dio.get(url, options: options);
@@ -48,13 +49,25 @@ class ColmenasService {
 
   Future<void> postData() async {
     try {
-      final response =
-          await _dio.post('$baseUrl/v1/colmenas', data: PaginatorModel);
+      String url = '$baseUrl/v1/colmenas';
+      Options options = await TokenService.getOptions();
+      // Realizar la solicitud POST para crear una nueva colmena
+      final response = await _dio.post(url, options: options);
 
-      print(response);
-      return response.data;
+      // Verificar si la solicitud fue exitosa
+      if (response.statusCode == 200) {
+        
+        final nombreCreada = response.data['nombre'];
+        
+        print('Se creó la colmena exitosamente $nombreCreada');
+      } else {
+        // Manejar errores de la solicitud
+        throw Exception(
+            'No se pudo crear la colmena. Código de estado: ${response.statusCode}');
+      }
     } catch (e) {
-      throw Exception('No se puedo crear la colmena: $e');
+      // Manejar errores de la solicitud
+      throw Exception('No se pudo crear la colmena: $e');
     }
   }
 }

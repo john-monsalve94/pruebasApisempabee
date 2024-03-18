@@ -1,6 +1,6 @@
-import 'package:empabee/vistas/notifications/notificacionesScreen.dart';
-import 'package:empabee/vistas/screens/perfil/perfilScreen.dart';
-import 'package:empabee/vistas/screens/screens.dart';
+import 'package:empabee/screens/notifications/notificacionesScreen.dart';
+import 'package:empabee/screens/perfil/perfilScreen.dart';
+import 'package:empabee/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 
 // GoRouter configuration

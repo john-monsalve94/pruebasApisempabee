@@ -72,28 +72,4 @@ class SplashScreenState extends State<SplashScreen>
     );
   }
 }
-// class SplashScreen extends StatefulWidget {
-//   const SplashScreen({super.key});
 
-//   @override
-//   State<SplashScreen> createState() => _SplashScreenState();
-// }
-
-// class _SplashScreenState extends State<SplashScreen> {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     String location = '';
-//     Future.delayed(Duration(seconds: 2), () async {
-//       SharedPreferences prefs = await SharedPreferences.getInstance();
-//       String token = prefs.getString('token') ?? '';
-//       print(token);
-//       location = token.isNotEmpty ? '/colmenas' : '/login';
-//     }).then((value) => context.go(location));
-//     return Scaffold(
-//       body: (Center(
-//         child: Text('Splash Empabee'),
-//       )),
-//     );
-//   }
-// }

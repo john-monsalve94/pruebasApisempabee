@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 
-import 'package:empabee/vistas/screens/perfil/perfilScreen.dart';
+import 'package:empabee/models/perfil_models.dart';
+import 'package:empabee/screens/perfil/perfilScreen.dart';
+import 'package:empabee/services/perfil_service.dart';
 import 'package:empabee/widgets/appBarEmpa.dart';
 
 import 'package:empabee/widgets/cards_colmenas.dart';
@@ -8,7 +10,7 @@ import 'package:empabee/widgets/drawerNav.dart';
 import 'package:empabee/widgets/navFooterEmpabee.dart';
 
 import 'package:flutter/material.dart';
-import 'package:empabee/vistas/screens/screens.dart';
+import 'package:empabee/screens/screens.dart';
 
 class ColmenasScreen extends StatefulWidget {
   @override
@@ -16,13 +18,40 @@ class ColmenasScreen extends StatefulWidget {
 }
 
 class _ColmenasScreenState extends State<ColmenasScreen> {
+  //aqui declaro las variables que voy a usar para cargar algo de perfil, y late,esta disponible cuando se quiera usar
+  String nombrePerfil = '';
+  String correoPerfil = '';
+  late final perfilService = PerfilService();
+  //.............................................
+  // aqui inicializo antes de  entrar al wisget y que quiero tener para hacerla
+  @override
+  void initState() {
+    super.initState();
+    cargarDatosPerfil(); // Llama a la función para cargar los datos del perfil al iniciar el widget
+  }
+
+  void cargarDatosPerfil() {
+    perfilService.obtenerTodosLosDatos().then((datosPerfil) {
+      final String nombre = datosPerfil['nombre'];
+      final String correo = datosPerfil['correo'];
+      setState(() {
+        nombrePerfil =
+            nombre; // Actualiza el estado con el nombre del perfil obtenido
+        correoPerfil = correo;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarEmpa(),
-      endDrawer: DrawerNav(),
+      endDrawer: DrawerNav(
+        nombre: nombrePerfil,
+        correo: correoPerfil,
+      ),
       body: FutureBuilder<List<ColmenaModel>>(
-        future: ColmenasService().getColmenas(10,
+        future: ColmenasService().getColmenas(8,
             1), // para manejar el nummero  de colmenas que voy a mostrar en la pagina
         initialData: const [],
         builder: (context, snapshot) {
@@ -39,6 +68,7 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
           } else {
             //----------------------------ahora despues de comprobar el future viene el crear la vista
             final List<ColmenaModel> colmenas = snapshot.data!;
+
             // final List<Datum> data = colmenas.data ?? [];
             // el snapshot es para obtener los datos del Future o stream el ! afirmando que no son nulos
 
@@ -77,7 +107,7 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                                   child: Padding(
                                     padding: EdgeInsets.all(16.16),
                                     child: Text(
-                                      'Hola John Monsalve',
+                                      'Hola $nombrePerfil',
                                       style: TextStyle(
                                           fontSize: 24,
                                           fontWeight: FontWeight.bold),
@@ -112,21 +142,26 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
 
                     child: Padding(
                       padding: EdgeInsets.only(
-                        left: 16,
+                        left: 48,
                         right: 16,
                       ),
-                      child: GridView.builder(
-                        //el list...builder ya tiene SingleChildScrollView
+                      child: SizedBox(
+                        height: 450,
+                        width: 400,
+                        child: GridView.builder(
+                          //el list...builder ya tiene SingleChildScrollView
 
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.8),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, childAspectRatio: 1),
 
-                        itemCount: colmenas.length,
-                        itemBuilder: (context, index) {
-                          // print({'ENTRANDO HASTA AQUI':colmenas});
-                          return CardsColmenas(colmenas[index]);
-                          // title: Text(colmenas[index].nombre),
-                        },
+                          itemCount: colmenas.length,
+                          itemBuilder: (context, index) {
+                            // print({'ENTRANDO HASTA AQUI':colmenas});
+                            return CardsColmenas(colmenas[index]);
+                            // title: Text(colmenas[index].nombre),
+                          },
+                        ),
                       ),
                     ),
                   ),
@@ -137,10 +172,17 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          ColmenasService().postData().then((_) {
+            setState(() {});
+          }).catchError((error) {
+            print('Error: $error');
+          });
+        },
+        tooltip: 'Agregar Colmena',
         child: Icon(Icons.add),
       ),
-      bottomNavigationBar: NavFooter(),
     );
   }
 }
+//  ColmenasService().postData();
