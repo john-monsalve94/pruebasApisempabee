@@ -1,3 +1,4 @@
+import 'package:empabee/screens/colmenaEspecifica/colmenaEsp_sreen.dart';
 import 'package:empabee/screens/notifications/notificacionesScreen.dart';
 import 'package:empabee/screens/perfil/perfilScreen.dart';
 import 'package:empabee/screens/screens.dart';
@@ -14,7 +15,6 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/login',
       builder: (context, state) => LoginScreen(),
-      
     ),
     GoRoute(
         path: '/colmenas',
@@ -27,6 +27,10 @@ final appRouter = GoRouter(
           GoRoute(
             path: 'notificaciones',
             builder: (context, state) => const NotificationScreen(),
+          ),
+          GoRoute(
+            path: 'colmenaEspecifica/:id',
+            builder: (context, state) =>  ColmenaEspe_screen(id:int.parse(state.pathParameters['id']!)),
           ),
         ]),
     GoRoute(
