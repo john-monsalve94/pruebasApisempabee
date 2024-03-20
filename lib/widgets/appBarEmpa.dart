@@ -1,5 +1,8 @@
 // ignore_for_file: type_literal_in_constant_pattern
 
+import 'dart:async';
+import 'dart:html';
+
 import 'package:empabee/models/colmenas_models.dart';
 import 'package:empabee/screens/colmenaEspecifica/colmenaEsp_sreen.dart';
 import 'package:empabee/screens/colmenas/colmenas_screen.dart';
@@ -15,9 +18,55 @@ import 'package:empabee/screens/siembraColmena/siembraColmena_screen.dart';
 import 'package:empabee/screens/siembraproduccion/siembraProduccion_screen.dart';
 import 'package:empabee/services/perfil_service.dart';
 import 'package:empabee/widgets/drawerNav.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppBarEmpa extends StatefulWidget implements PreferredSizeWidget {
+  // final Widget? appBar;
+  // final Widget? drawer;
+    final Widget? appBar;
+  final Widget? body;
+  final Widget? floatingActionButton;
+  final FloatingActionButtonLocation? floatingActionButtonLocation;
+  final FloatingActionButtonAnimator? floatingActionButtonAnimator;
+  final List<Widget>? persistentFooterButtons;
+  final Widget? drawer;
+  final Widget? endDrawer;
+  final Widget? bottomNavigationBar;
+  final Widget? bottomSheet;
+  final Color? backgroundColor;
+  final bool? resizeToAvoidBottomInset;
+  final bool extendBody;
+  final bool extendBodyBehindAppBar;
+  final PreferredSizeWidget? appBarPreferredSize;
+  final double? appBarElevation;
+  final ShapeBorder? appBarShape;
+  final double? appBarTitleSpacing;
+  final SystemUiOverlayStyle? appBarSystemOverlayStyle;
+  final Brightness? appBarBrightness;
+  final Color? appBarBackgroundColor;
+  final Color? appBarForegroundColor;
+  final IconThemeData? appBarIconTheme;
+  final TextTheme? appBarTextTheme;
+  final bool? appBarPrimary;
+  final bool? appBarCenterTitle;
+  final bool? appBarAutomaticallyImplyLeading;
+  final Widget? appBarLeading;
+  final Widget? appBarTitle;
+  final Widget? appBarActions;
+  final bool? appBarFlexibleSpace;
+  final double? appBarToolbarHeight;
+  final double? appBarTitleHeight;
+  final Widget? appBarBottom;
+  final bool appBarExcludeHeaderSemantics;
+  final bool drawerEnableOpenDragGesture;
+  final bool endDrawerEnableOpenDragGesture;
+  final bool primary;
+  final DragStartBehavior drawerDragStartBehavior;
+
+
+
   final int? id;
   final String? colmena;
   final String? colmenaConfiguracion;
@@ -30,6 +79,48 @@ class AppBarEmpa extends StatefulWidget implements PreferredSizeWidget {
 
   const AppBarEmpa({
     Key? key,
+    // this.appBar,
+    // this.drawer,
+    this.appBar,
+    this.body,
+    this.floatingActionButton,
+    this.floatingActionButtonLocation,
+    this.floatingActionButtonAnimator,
+    this.persistentFooterButtons,
+    this.drawer,
+    this.endDrawer,
+    this.bottomNavigationBar,
+    this.bottomSheet,
+    this.backgroundColor,
+    this.resizeToAvoidBottomInset,
+    this.extendBody = false,
+    this.extendBodyBehindAppBar = false,
+    this.appBarPreferredSize,
+    this.appBarElevation,
+    this.appBarShape,
+    this.appBarTitleSpacing,
+    this.appBarSystemOverlayStyle,
+    this.appBarBrightness,
+    this.appBarBackgroundColor,
+    this.appBarForegroundColor,
+    this.appBarIconTheme,
+    this.appBarTextTheme,
+    this.appBarPrimary,
+    this.appBarCenterTitle,
+    this.appBarAutomaticallyImplyLeading,
+    this.appBarLeading,
+    this.appBarTitle,
+    this.appBarActions,
+    this.appBarFlexibleSpace,
+    this.appBarToolbarHeight,
+    this.appBarTitleHeight,
+    this.appBarBottom,
+    this.appBarExcludeHeaderSemantics = false,
+    this.drawerEnableOpenDragGesture = true,
+    this.endDrawerEnableOpenDragGesture = true,
+    this.primary = true,
+    this.drawerDragStartBehavior = DragStartBehavior.start,
+
     this.id,
     this.colmena,
     this.colmenaConfiguracion,
@@ -52,7 +143,6 @@ class _AppBarEmpaState extends State<AppBarEmpa> {
   String nombrePerfil = '';
   String correoPerfil = '';
 
-  
   @override
   void initState() {
     super.initState();
@@ -140,6 +230,8 @@ class _AppBarEmpaState extends State<AppBarEmpa> {
         nombre: nombrePerfil,
         correo: correoPerfil,
       ),
+      
     );
   }
+  
 }

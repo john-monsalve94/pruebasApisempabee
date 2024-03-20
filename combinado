@@ -1,0 +1,43 @@
+import 'package:flutter/material.dart';
+import 'package:empabee/services/colmenas_service.dart';
+import 'package:empabee/services/perfil_service.dart';
+import 'package:empabee/models/colmena_model.dart';
+import 'package:empabee/models/perfil_model.dart';
+
+class CombinedDataScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Combined Data'),
+      ),
+      body: FutureBuilder<Map<String, dynamic>>(
+        future: Future.wait([
+          ColmenasService().getColmenas(8, 1),
+          PerfilService.getPerfil(),
+        ]),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+
+          final Map<String, dynamic> data = snapshot.data ?? {};
+          final List<ColmenaModel> colmenas = data['colmenas'] ?? [];
+          final PerfilModel perfil = data['perfil'];
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Nombre del perfil: ${perfil.nombre}'),
+              Text('Correo del perfil: ${perfil.correo}'),
+              Text('Cantidad de colmenas: ${colmenas.length}'),
+              // Aquí puedes mostrar más información combinada según tus necesidades
+            ],
+          );
+        },
+      ),
+    );
+  }
+}

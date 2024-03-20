@@ -1,0 +1,60 @@
+import 'package:flutter/material.dart';
+import 'package:tu_aplicacion/servicios/colmenas_service.dart';
+import 'package:tu_aplicacion/servicios/perfil_service.dart';
+import 'package:tu_aplicacion/modelos/colmena_model.dart';
+import 'package:tu_aplicacion/modelos/perfil_model.dart';
+
+class MiVista extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mi Vista'),
+      ),
+      body: FutureBuilder<List<ColmenaModel>>(
+        future: ColmenasService().getColmenas(),
+        builder: (context, snapshotColmenas) {
+          if (snapshotColmenas.connectionState == ConnectionState.waiting) {
+            return CircularProgressIndicator();
+          } else if (snapshotColmenas.hasError) {
+            return Text('Error: ${snapshotColmenas.error}');
+          } else {
+            // Obtener datos de colmenas
+            final List<ColmenaModel> colmenas = snapshotColmenas.data!;
+
+            return FutureBuilder<PerfilModel>(
+              future: PerfilService.getPerfil(),
+              builder: (context, snapshotPerfil) {
+                if (snapshotPerfil.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshotPerfil.hasError) {
+                  return Text('Error: ${snapshotPerfil.error}');
+                } else {
+                  // Obtener datos de perfil
+                  final PerfilModel perfil = snapshotPerfil.data!;
+
+                  // Usar los datos de colmenas y perfil para crear el widget
+                  return _buildWidget(colmenas, perfil);
+                }
+              },
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  Widget _buildWidget(List<ColmenaModel> colmenas, PerfilModel perfil) {
+    // Aquí puedes usar los datos de colmenas y perfil para crear tu widget
+    // Por ejemplo:
+    return ListView.builder(
+      itemCount: colmenas.length,
+      itemBuilder: (context, index) {
+        return ListTile(
+          title: Text(colmenas[index].nombre),
+          subtitle: Text(perfil.nombre), // Ejemplo de uso de datos de perfil
+        );
+      },
+    );
+  }
+}
