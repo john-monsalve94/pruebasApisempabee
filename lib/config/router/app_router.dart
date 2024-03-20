@@ -1,6 +1,6 @@
 import 'package:empabee/screens/colmenaEspecifica/colmenaEsp_sreen.dart';
-import 'package:empabee/screens/notifications/notificacionesScreen.dart';
-import 'package:empabee/screens/perfil/perfilScreen.dart';
+import 'package:empabee/screens/notifications/notificaciones_Screen.dart';
+import 'package:empabee/screens/perfil/perfil_Screen.dart';
 import 'package:empabee/screens/screens.dart';
 import 'package:go_router/go_router.dart';
 

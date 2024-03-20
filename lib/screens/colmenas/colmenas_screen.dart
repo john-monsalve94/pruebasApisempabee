@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new
 
 import 'package:empabee/models/perfil_models.dart';
-import 'package:empabee/screens/perfil/perfilScreen.dart';
+import 'package:empabee/screens/perfil/perfil_Screen.dart';
 import 'package:empabee/services/perfil_service.dart';
 import 'package:empabee/widgets/appBarEmpa.dart';
 
@@ -31,9 +31,9 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
   }
 
   void cargarDatosPerfil() {
-    perfilService.obtenerTodosLosDatos().then((datosPerfil) {
-      final String nombre = datosPerfil['nombre'];
-      final String correo = datosPerfil['correo'];
+    PerfilService.getPerfil().then((datosPerfil) {
+      final String nombre = datosPerfil.primerNombre;
+      final String correo = datosPerfil.email;
       setState(() {
         nombrePerfil =
             nombre; // Actualiza el estado con el nombre del perfil obtenido
@@ -134,16 +134,14 @@ class _ColmenasScreenState extends State<ColmenasScreen> {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: 16,
-                  ),
                   Expanded(
                     // es necesario para que se distribullan los elemento en la columna con esto le damos un tamaño definido
 
                     child: Padding(
                       padding: EdgeInsets.only(
-                        left: 48,
-                        right: 16,
+                        left: 8,
+                        right: 8,
+                        top: 16,
                       ),
                       child: SizedBox(
                         height: 450,

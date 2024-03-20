@@ -80,17 +80,18 @@ class CardOnPressColmena extends StatelessWidget {
                 radius: 30,
                 backgroundColor: Colors.orange,
                 child: SvgPicture.asset(
-                  'assets/images/colmena.svg', // Ruta al archivo SVG en tu proyecto
+                  'assets/images/colmena.svg',
+                  // Ruta al archivo SVG en tu proyecto
 
-                  width: 40,
-                  height: 40,
+                  width: 24,
+                  height: 24,
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 16, bottom: 16),
                 child: Text(card.nombre),
               ),
-              Text('Último valor importante'),
+              Text('Valor a considerar'),
             ],
           ),
         ),

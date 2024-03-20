@@ -26,7 +26,7 @@ class PerfilView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<PerfilModel>(
-        future: perfilService.getPerfil(),
+        future: PerfilService.getPerfil(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             //mientras espera haga lo siguiente

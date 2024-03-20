@@ -56,9 +56,8 @@ class ColmenasService {
 
       // Verificar si la solicitud fue exitosa
       if (response.statusCode == 200) {
-        
         final nombreCreada = response.data['nombre'];
-        
+
         print('Se creó la colmena exitosamente $nombreCreada');
       } else {
         // Manejar errores de la solicitud
@@ -68,6 +67,23 @@ class ColmenasService {
     } catch (e) {
       // Manejar errores de la solicitud
       throw Exception('No se pudo crear la colmena: $e');
+    }
+  }
+
+  Future<ColmenaModel> getColmenaById(int id) async {
+    try {
+      Options options = await TokenService.getOptions();
+      final Response response =
+          await _dio.get('$baseUrl/v1/colmenas/$id', options: options);
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> responseData = response.data;
+        final ColmenaModel colmena = ColmenaModel.fromJson(responseData);
+        return colmena;
+      }       else {
+        throw Exception('Error al obtener la colmena');
+      }
+    } catch (e) {
+      throw Exception('Error en la solicitud: $e');
     }
   }
 }
