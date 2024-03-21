@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 
 class ColmenaEspe_screen extends StatefulWidget {
   final int id;
-  // final String colmena ;
+  final String nombre;
 
   const ColmenaEspe_screen({
     super.key,
     required this.id,
-    // required this.colmena,
+    required this.nombre,
   });
 
   @override
@@ -21,9 +21,6 @@ class ColmenaEspe_screen extends StatefulWidget {
 }
 
 class _ColmenaEspe_screenState extends State<ColmenaEspe_screen> {
-  String nombrePerfil = '';
-  String correoPerfil = '';
-
   List<String> list = <String>[
     'Filtrar',
     'Informes',
@@ -33,12 +30,8 @@ class _ColmenaEspe_screenState extends State<ColmenaEspe_screen> {
   String dropdownValue = 'Filtrar';
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBarEmpa(),
-      endDrawer: DrawerNav(
-        nombre: nombrePerfil,
-        correo: correoPerfil,
-      ),
+    return AppBarEmpa(
+      titulo: widget.nombre,
       body: FutureBuilder(
         future: ColmenasService().getColmenaById(widget.id),
         builder: (BuildContext context, AsyncSnapshot<ColmenaModel> snapshot) {

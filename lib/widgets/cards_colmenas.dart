@@ -41,7 +41,8 @@ class CardsColmenas extends StatelessWidget {
             card: card,
             onTap: () {
               print(card);
-              context.go('/colmenas/colmenaEspecifica/${card.id}');
+              context.goNamed('colmenas/colmena',pathParameters: {'id':card.id.toString(),'nombre':card.nombre});
+              // context.go('/colmenas/colmenaEspecifica/${card.id}');
               // context.goNamed('/colmenaEspecifica',
               //     pathParameters: {'colmena_id': '${card.id}'});
             }),

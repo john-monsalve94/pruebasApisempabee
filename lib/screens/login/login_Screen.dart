@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final String password = _passwordController.text.trim();
 
     try {
-      print('antes de entar al servicio');
+      // print('antes de entar al servicio');
       final authService = AuthService();
       final response = await authService.login(email, password);
 
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
         final savedToken = await TokenService.getToken();
 
         Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
-        print('olaaaaaaaaaaaa');
+        // print('olaaaaaaaaaaaa');
         print(decodedToken);
 
         // final userId = decodedToken['user_id'];

@@ -20,29 +20,30 @@ class ColmenasScreen extends StatefulWidget {
 class _ColmenasScreenState extends State<ColmenasScreen> {
   @override
   Widget build(BuildContext context) {
-    Future<List<ColmenaModel>> hey;
-    Future<PerfilModel> loco;
+    // print('ddddddddddddddddddddddddddd');
     return AppBarEmpa(
-      
-      body: FutureBuilder<List<dynamic>>(
+      titulo: 'Bienvenido a Empabeee',
+      body: FutureBuilder<Map<String, dynamic>>(
         future: Future.wait([
-          hey = ColmenasService().getColmenas(8, 1),
-          loco = PerfilService.getPerfil(),
-        ]),
-
-        builder: (context, snapshot) { 
-          print('heyyyyyyyyyyyyyyyyyyyyyyyyy');
+          PerfilService.getPerfil(),
+          ColmenasService().getColmenas(8, 1),
+        ]).then((List<dynamic> data) {
+          return {
+            'perfil': data[0] as PerfilModel,
+            'colmenas': data[1] as List<ColmenaModel>,
+          };
+        }),
+        builder: (context, snapshot) {
+          // print('heyyyyyyyyyyyyyyyyyyyyyyyyy');
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
 
-          final List<dynamic> data = snapshot.data ?? [];
-          final List<ColmenaModel> colmenas = data[0] as List<ColmenaModel>;
-          print(colmenas);
-          final PerfilModel perfil = data[1] as PerfilModel;
-          print(perfil);
+          final Map<String, dynamic> data = snapshot.data ?? {};
+          final PerfilModel perfil = data['perfil'];
+          final List<ColmenaModel> colmenas = data['colmenas'];
           return Center(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

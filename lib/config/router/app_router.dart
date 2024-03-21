@@ -9,28 +9,37 @@ final appRouter = GoRouter(
   initialLocation: '/',
   routes: [
     GoRoute(
+      name: 'Splash',
       path: '/',
       builder: (context, state) => SplashScreen(),
     ),
     GoRoute(
+      name: 'login',
       path: '/login',
       builder: (context, state) => LoginScreen(),
     ),
     GoRoute(
+        name: 'colmenas',
         path: '/colmenas',
         builder: (context, state) => ColmenasScreen(),
         routes: [
           GoRoute(
+            name: 'perfil',
             path: 'perfil',
             builder: (context, state) => const PerfilScreen(),
           ),
           GoRoute(
+            name: 'notificaciones',
             path: 'notificaciones',
             builder: (context, state) => const NotificationScreen(),
           ),
           GoRoute(
-            path: 'colmenaEspecifica/:id',
-            builder: (context, state) =>  ColmenaEspe_screen(id:int.parse(state.pathParameters['id']!)),
+            name: 'colmenas/colmena',
+            path: 'colmena/:id/:nombre',
+            builder: (context, state) => ColmenaEspe_screen(
+              id: int.parse(state.pathParameters['id']!),
+              nombre: state.pathParameters['nombre']!,
+            ),
           ),
         ]),
     GoRoute(

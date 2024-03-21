@@ -13,7 +13,8 @@ class TokenService {
   // Método para guardar el token en el almacenamiento local
   static Future<void> saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.setString(_tokenKey, token);// aqui le esta pasando el token ala llave _tokenKey
+    await prefs.setString(
+        _tokenKey, token); // aqui le esta pasando el token ala llave _tokenKey
   }
 
   // Método para obtener el token del almacenamiento local
@@ -28,29 +29,23 @@ class TokenService {
     await prefs.remove(TokenService._tokenKey);
   }
 
-  static void isExpired(BuildContext context) {
-    TokenService.getToken().then((String? token) {
+  static Future<bool> isExpired() {
+    return TokenService.getToken().then((String? token) {
       if (token != null) {
         Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
         int expiracion = decodedToken['exp'] as int;
-        int inicio = decodedToken['iat'] as int;
+        int actual = decodedToken['iat'] as int;
 
-        if (expiracion < inicio) {
-          context.go('/colmenas');
+        if (expiracion < actual) {
+          return true; //expiro
+          // context.go('/colmenas');
+        } else {
+          print('la session sigue activa');
+          return false;
         }
       } else {
-        context.go('/login');
-        showDialog(
-            context: context,
-            builder: (context) => AlertDialog(
-                  title: Text('El token se expirado'),
-                  content: Text('Profavor vuelve a iniciar sessión'),
-                  actions: [
-                    TextButton(
-                        onPressed: () => context.go('/login'),
-                        child: Text('Ok'))
-                  ],
-                ));
+        print('No hay token o expiro');
+        return true;
       }
     });
   }
@@ -62,3 +57,15 @@ class TokenService {
     });
   }
 }
+// context.go('/login');
+        // showDialog(
+        //     context: context,
+        //     builder: (context) => AlertDialog(
+        //           title: Text('El token se expirado'),
+        //           content: Text('Profavor vuelve a iniciar sessión'),
+        //           actions: [
+        //             TextButton(
+        //                 onPressed: () => context.go('/login'),
+        //                 child: Text('Ok'))
+        //           ],
+        //         ));
