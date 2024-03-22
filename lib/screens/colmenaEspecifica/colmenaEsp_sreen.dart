@@ -1,9 +1,8 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, file_names
 
 import 'package:empabee/models/colmenas_models.dart';
 import 'package:empabee/services/colmenas_services.dart';
 import 'package:empabee/widgets/appBarEmpa.dart';
-import 'package:empabee/widgets/drawerNav.dart';
 import 'package:flutter/material.dart';
 
 class ColmenaEspe_screen extends StatefulWidget {
@@ -44,7 +43,7 @@ class _ColmenaEspe_screenState extends State<ColmenaEspe_screen> {
               child: Text('Error: ${snapshot.error}'),
             );
           } else {
-            final colmena = snapshot.data!;
+            // final colmena = snapshot.data!;
 
             return Column(
               children: [

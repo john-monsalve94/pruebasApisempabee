@@ -12,20 +12,21 @@ class PerfilService {
     try {
       final perfilService = PerfilService();
       Options options = await TokenService.getOptions();
-      final expiracion = await TokenService.isExpired();
+      // final expiracion = await TokenService.isExpired();
       final response = await perfilService._dio
           .post('$apiUrl/auth/perfil', options: options);
-      if (!expiracion) {
+      // if (!expiracion) {
         if (response.statusCode == 200) {
           final jsonBody = response.data;
           return PerfilModel.fromJson(jsonBody);
         } else {
           throw Exception('Error al obtener el perfil del usuario');
         }
-      } else {
-        throw Exception('El token ha expirado');
+      // } 
+      // else {
+      //   throw Exception('El token ha expirado');
 
-      }
+      // }
     } catch (e) {
       throw Exception('Error al obtener el perfil del usuario: $e');
     }

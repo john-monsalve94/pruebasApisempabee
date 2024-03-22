@@ -1,9 +1,7 @@
-import 'dart:developer';
+
+// ignore_for_file: avoid_print
 
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:go_router/go_router.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -57,15 +55,3 @@ class TokenService {
     });
   }
 }
-// context.go('/login');
-        // showDialog(
-        //     context: context,
-        //     builder: (context) => AlertDialog(
-        //           title: Text('El token se expirado'),
-        //           content: Text('Profavor vuelve a iniciar sessión'),
-        //           actions: [
-        //             TextButton(
-        //                 onPressed: () => context.go('/login'),
-        //                 child: Text('Ok'))
-        //           ],
-        //         ));

@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:empabee/services/Auth_Service.dart';
-import 'package:empabee/services/perfil_service.dart';
 import 'package:empabee/services/token_service.dart';
 
 import 'package:flutter/material.dart';
@@ -9,8 +10,7 @@ class DrawerNav extends StatefulWidget {
   final String nombre;
   final String correo;
 
-  const DrawerNav({Key? key, required this.nombre, required this.correo})
-      : super(key: key);
+  const DrawerNav({super.key, required this.nombre, required this.correo});
 
   @override
   State<DrawerNav> createState() => _DrawerNavState();
@@ -23,7 +23,6 @@ class _DrawerNavState extends State<DrawerNav> {
 
   @override
   Widget build(BuildContext context) {
-    AuthService _autthservice = AuthService();
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -61,9 +60,8 @@ class _DrawerNavState extends State<DrawerNav> {
           ListTile(
             title: Text('Cerrar Sesión'),
             onTap: () {
-              // final ver = AuthService().obtenerToken();
               TokenService().deleteToken().then((value) {
-                AuthService.obtenerToken(context);
+                context.go('/login');
               });
             },
           )

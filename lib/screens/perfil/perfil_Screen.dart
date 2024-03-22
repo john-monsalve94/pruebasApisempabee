@@ -1,8 +1,7 @@
-// ignore_for_file: prefer_const_declarations
+// ignore_for_file: prefer_const_declarations, file_names
 
 import 'package:empabee/models/perfil_models.dart';
 import 'package:empabee/services/perfil_service.dart';
-import 'package:empabee/widgets/drawerNav.dart';
 import 'package:flutter/material.dart';
 
 class PerfilScreen extends StatelessWidget {

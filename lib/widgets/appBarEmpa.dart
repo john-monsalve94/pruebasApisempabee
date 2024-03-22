@@ -1,4 +1,4 @@
-// ignore_for_file: type_literal_in_constant_pattern
+// ignore_for_file: type_literal_in_constant_pattern, file_names, avoid_print
 import 'package:empabee/services/perfil_service.dart';
 import 'package:empabee/widgets/drawerNav.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +13,14 @@ class AppBarEmpa extends StatefulWidget implements PreferredSizeWidget {
   final Widget? floatingActionButton;
 
   const AppBarEmpa({
-    Key? key,
+    super.key,
     this.appBar,
-    this.floatingActionButton,
+    this.floatingActionButton ,
     required this.body,
     this.id,
     required this.titulo,
 
-  }) : super(key: key);
+  });
 
   @override
   State<AppBarEmpa> createState() => _AppBarEmpaState();
@@ -53,7 +53,7 @@ class _AppBarEmpaState extends State<AppBarEmpa> {
   @override
   Widget build(BuildContext context) {
     // print(context);
-    String titulo = widget.titulo!;
+    String titulo = widget.titulo;
 
     return Scaffold(
       appBar: AppBar(
@@ -75,6 +75,7 @@ class _AppBarEmpaState extends State<AppBarEmpa> {
         correo: correoPerfil,
       ),
       body: widget.body,
+      floatingActionButton:widget.floatingActionButton,
     );
   }
 }

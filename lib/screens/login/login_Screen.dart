@@ -1,9 +1,9 @@
+// ignore_for_file: file_names, use_build_context_synchronously
+
 import 'package:empabee/services/Auth_Service.dart';
 import 'package:empabee/services/token_service.dart';
 import 'package:empabee/widgets/textoInicioEmpabee.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 
@@ -39,10 +39,11 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response['access_token'] != null) {
         final token = response['access_token'];
         await TokenService.saveToken(token);
-        final savedToken = await TokenService.getToken();
+        // final savedToken = await TokenService.getToken();
 
         Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
         // print('olaaaaaaaaaaaa');
+        // ignore: avoid_print
         print(decodedToken);
 
         // final userId = decodedToken['user_id'];
@@ -52,35 +53,26 @@ class _LoginScreenState extends State<LoginScreen> {
         AuthService()
             .login(email, password)
             .then((value) => context.go('/colmenas'));
-      } else {
-        // Error en el inicio de sesión
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text('Error'),
-            content: Text('Usuario o contraseña inválidos'),
-            actions: [
-              TextButton(
-                onPressed: () => GoRouter.of(context).pop(),
-                child: Text('OK'),
-              ),
-            ],
-          ),
-        );
-      }
+      } 
     } catch (e) {
-      showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-                title: Text('Error'),
-                content: Text('Credenciales Incorrectas'),
-                actions: [
-                  TextButton(
-                      onPressed: () => GoRouter.of(context).pop(),
-                      child: Text('Ok'))
-                ],
-              ));
-      print('Error al iniciar sesión o al obtener el token: $e');
+      // ignore: avoid_print
+      print('Error durante la autenticación: $e');
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text('Error de autenticación'),
+      content: Text('Ocurrió un error durante el inicio de sesión. Por favor, inténtalo de nuevo más tarde.'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.pop(context); // Cerrar el diálogo
+          },
+          child: Text('Aceptar'),
+        ),
+      ],
+    ),
+  );
+      
     }
     setState(() {
       _isLoading = false;

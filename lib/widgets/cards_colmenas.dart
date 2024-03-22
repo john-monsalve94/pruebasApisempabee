@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:empabee/models/colmenas_models.dart';
 
@@ -9,7 +9,7 @@ import 'package:go_router/go_router.dart';
 class CardsColmenas extends StatelessWidget {
   final ColmenaModel card;
 
-  const CardsColmenas(this.card, {Key? key}) : super(key: key);
+  const CardsColmenas(this.card, {super.key});
 
   @override
   Widget build(BuildContext context) {

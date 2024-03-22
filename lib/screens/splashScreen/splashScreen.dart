@@ -3,12 +3,13 @@
 import 'dart:async';
 
 import 'package:empabee/services/Auth_Service.dart';
-import 'package:empabee/services/token_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
   SplashScreenState createState() => SplashScreenState();
 }
@@ -25,8 +26,9 @@ class SplashScreenState extends State<SplashScreen>
     return Timer(duration, navigationPage);
   }
 
-  void navigationPage() {
-    AuthService.obtenerToken(context);
+  void navigationPage() async {
+
+    AuthService.obtenerToken().then((ruta) => context.go(ruta));
   }
 
   @override
@@ -72,4 +74,3 @@ class SplashScreenState extends State<SplashScreen>
     );
   }
 }
-
