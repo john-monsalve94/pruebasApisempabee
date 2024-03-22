@@ -3,8 +3,6 @@
 import 'package:dio/dio.dart';
 import 'package:empabee/screens/screens.dart';
 import 'package:empabee/services/token_service.dart';
-import 'package:flutter/cupertino.dart';
-
 
 class AuthService {
   final _dio = Dio();
@@ -23,23 +21,20 @@ class AuthService {
     }
   }
 
-static Future<String> obtenerToken() async {
-  try {
-    final token = await TokenService.getToken();
-    if (token != null) {
-      final tokenConBearer = 'Bearer $token';
-      print('El token es: $tokenConBearer');
-      return '/colmenas'; // Devolver la ruta deseada
-    } else {
-      print('No hay token disponible');
-      return '/login'; // Devolver la ruta deseada
+  static Future<String> obtenerToken() async {
+    try {
+      final token = await TokenService.getToken();
+      if (token != null) {
+        final tokenConBearer = 'Bearer $token';
+        print('El token es: $tokenConBearer');
+        return '/colmenas'; // Devolver la ruta deseada
+      } else {
+        print('No hay token disponible');
+        return '/login'; // Devolver la ruta deseada
+      }
+    } catch (e) {
+      print('Error al obtener el token: $e');
+      return '/error'; // Devolver la ruta deseada en caso de error
     }
-  } catch (e) {
-    print('Error al obtener el token: $e');
-    return '/error'; // Devolver la ruta deseada en caso de error
   }
-}
-
-
-
 }
