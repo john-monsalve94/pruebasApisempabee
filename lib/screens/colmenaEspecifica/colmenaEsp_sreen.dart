@@ -48,7 +48,7 @@ class _ColmenaEspe_screenState extends State<ColmenaEspe_screen> {
             return Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 16, bottom: 48),
+                  padding: const EdgeInsets.only(top: 16, bottom: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -79,9 +79,22 @@ class _ColmenaEspe_screenState extends State<ColmenaEspe_screen> {
                           child: Text('Configuración'),
                         ),
                       ),
+
                     ],
                   ),
+                  
+                
+                
                 ),
+                                                            Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Acción al presionar el botón de Configuración
+                          },
+                          child: Text('Siembra'),
+                        ),
+                      ),
                 Padding(
                   padding: const EdgeInsets.only(left: 32, right: 32),
                   child: Row(
